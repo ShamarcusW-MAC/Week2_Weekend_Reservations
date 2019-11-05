@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Walker Inn"
+        android:textSize="32sp"
+        android:textStyle="bold|italic"
+        android:fontFamily="serif-monospace"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TextView
+        android:id="@+id/subtitle_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reservation Run"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:fontFamily="serif-monospace"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_textview"
+        app:layout_constraintVertical_bias="0.04" />
+
+
+    <TextView
+        android:id="@+id/name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Name: "
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:fontFamily="serif-monospace"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitle_textview"
+        app:layout_constraintEnd_toStartOf="@id/subtitle_textview"
+        />
+
+    <EditText
+        android:id="@+id/name_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@id/name_textview"
+        app:layout_constraintTop_toTopOf="@id/name_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/number_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Room Number: "
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:fontFamily="serif-monospace"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/name_textview"
+        app:layout_constraintStart_toStartOf="@id/name_textview"
+        />
+
+
+    <EditText
+        android:id="@+id/number_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@id/number_textview"
+        app:layout_constraintTop_toTopOf="@id/number_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Date: "
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:fontFamily="serif-monospace"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/number_textview"
+        app:layout_constraintStart_toStartOf="@id/name_textview"
+        />
+
+
+    <EditText
+        android:id="@+id/date_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@id/date_textview"
+        app:layout_constraintTop_toTopOf="@id/date_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/price_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Price: "
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:fontFamily="serif-monospace"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/date_textview"
+        app:layout_constraintStart_toStartOf="@id/name_textview"
+        />
+
+
+    <EditText
+        android:id="@+id/price_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@id/price_textview"
+        app:layout_constraintTop_toTopOf="@id/price_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="135dp"
+        android:layout_height="56dp"
+        android:layout_marginRight="136dp"
+        android:layout_marginBottom="56dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Submit"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/price_edittext"
+
+        />
+
+    <Button
+        android:id="@+id/display_button"
+        android:layout_width="135dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="56dp"
+        android:layout_marginLeft="136dp"
+        android:text="Guests"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/price_edittext"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
