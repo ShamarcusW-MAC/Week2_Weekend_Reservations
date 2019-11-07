@@ -7,16 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import com.example.week2_weekend_reservations.MainActivity.Companion.editor
 import com.example.week2_weekend_reservations.MainActivity.Companion.numberOfGuests
+import com.example.week2_weekend_reservations.MainActivity.Companion.sharedPreferences
+import com.example.week2_weekend_reservations.MainActivity.Companion.guestspot
 import kotlinx.android.synthetic.main.activity_display.*
 import kotlin.text.StringBuilder
 
 class DisplayActivity : AppCompatActivity() {
 
-
-    lateinit var sharedPreferences: SharedPreferences
-
-    lateinit var editor: SharedPreferences.Editor
 
     lateinit var users: TextView
 
@@ -37,31 +36,9 @@ class DisplayActivity : AppCompatActivity() {
         var price: String? = intent.extras?.getString("Price")
 
 
+        Log.d("Dumber","" + numberOfGuests)
 
-
-        sharedPreferences = this.getSharedPreferences("com.example.week2_weekend_reservations", Context.MODE_PRIVATE)
-        editor = sharedPreferences.edit()
-        sharedPreferences.getInt(guest_key, 0)
-
-        editor.putInt(guest_key, (numberOfGuests+1)).commit()
-
-        if (numberOfGuests > 0)
-        {
-            var myGuests = StringBuilder()
-
-            for(i in 0..numberOfGuests)
-            {
-                var guest: String? = sharedPreferences.getString(VALUE_KEY + i, "FAILED")
-
-                myGuests.append(guest + "\n")
-
-
-            }
-            users_textView.setText(myGuests)
-        }
-        else {
-            users_textView.setText("No guests residing!")
-        }
+        displayUsers()
 
         gotodelete_button.setOnClickListener {_->
 
@@ -71,45 +48,41 @@ class DisplayActivity : AppCompatActivity() {
             Log.d("Name2", name.toString())
             intent.putExtra("Price2",price.toString())
 
+
         }
 
     }
 
     override fun onResume() {
         super.onResume()
-        if(numberOfGuests > 0)
-        {
 
-            var myUsers = StringBuilder()
-            for(i in 0..numberOfGuests)
-            {
-                var guest: String? = sharedPreferences.getString(VALUE_KEY + i, "")
-                myUsers.append(guest + "\n")
-            }
-            users_textView.setText(myUsers)
-        }
-        else {
-            users_textView.setText("No guests residing!")
-        }
+       displayUsers()
     }
 
 
     override fun onStop() {
         super.onStop()
-        sharedPreferences = this.getSharedPreferences("com.example.week2_weekend_reservations", Context.MODE_PRIVATE)
-        editor = sharedPreferences.edit()
-        sharedPreferences.getInt(guest_key, 0)
-        editor.putInt(guest_key, (numberOfGuests+1)).commit()
-        if(numberOfGuests > 0)
-        {
+        sharedPreferences.getString(VALUE_KEY + (numberOfGuests), guestspot)
+        sharedPreferences.getInt(guest_key, numberOfGuests)
+    }
 
-            var myUsers = StringBuilder()
+    fun displayUsers(){
+        if (numberOfGuests > 0)
+        {
+            var myGuests = StringBuilder()
+
             for(i in 0..numberOfGuests)
             {
+
                 var guest: String? = sharedPreferences.getString(VALUE_KEY + i, "")
-                myUsers.append(guest + "\n")
+
+                if(guest != null) {
+                    myGuests.append(guest + "\n")
+                }
+
+
             }
-            users_textView.setText(myUsers)
+            users_textView.setText(myGuests)
         }
         else {
             users_textView.setText("No guests residing!")

@@ -1,23 +1,21 @@
 package com.example.week2_weekend_reservations
 
-import android.content.Context
-import android.content.SharedPreferences
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.*
+import com.example.week2_weekend_reservations.MainActivity.Companion.VALUE_KEY
+import com.example.week2_weekend_reservations.MainActivity.Companion.editor
+import com.example.week2_weekend_reservations.MainActivity.Companion.numberOfGuests
+import com.example.week2_weekend_reservations.MainActivity.Companion.sharedPreferences
 
 
 class DeleteActivity : AppCompatActivity() {
 
 
-    lateinit var sharedPreferences: SharedPreferences
-
-    private var guest_key: String? = MainActivity.guest_key
-    private var VALUE_KEY = MainActivity.VALUE_KEY
-
-    lateinit var editor: SharedPreferences.Editor
     lateinit var search: EditText
     lateinit var usersName: ListView
     lateinit var delete: Button
@@ -40,20 +38,15 @@ class DeleteActivity : AppCompatActivity() {
         searchName = findViewById(R.id.search_button)
 
 
-        var intent = getIntent()
-        var name = intent.getStringExtra("Name2")
-        var price = intent.getStringExtra("Price2")
+        adapter = ArrayAdapter(this, R.layout.list_item_layout, R.id.guest_info_textView, names)
+        usersName.setAdapter(adapter)
 
-        sharedPreferences = this.getSharedPreferences("com.example.week2_weekend_reservations", Context.MODE_PRIVATE)
-        editor = sharedPreferences.edit()
-        sharedPreferences.getInt(guest_key, 0)
-        editor.putString(VALUE_KEY + (MainActivity.numberOfGuests), ("" + name + "\t$" + price)).commit()
-        editor.putInt(guest_key, (MainActivity.numberOfGuests +1)).commit()
+        if (numberOfGuests > 0) {
 
-        if (MainActivity.numberOfGuests > 0) {
+            for (i in 0..numberOfGuests - 1) {
 
-            for (i in 0..MainActivity.numberOfGuests) {
-                var guest: String? = sharedPreferences.getString(VALUE_KEY + i, "FAILED")
+                Log.d("key", VALUE_KEY + i)
+                var guest: String? = sharedPreferences.getString(VALUE_KEY + i.toString(), "")
 
                 names.add(guest + "\n")
 
@@ -61,13 +54,17 @@ class DeleteActivity : AppCompatActivity() {
             }
         }
 
+        Log.d("Number", "" + numberOfGuests)
+        delete.setOnClickListener { _ ->
 
-        searchName.setOnClickListener { _ ->
+            editor.remove(VALUE_KEY + (numberOfGuests - 1)).apply()
+            names.removeAt(numberOfGuests - 1)
+            adapter.remove(VALUE_KEY + (numberOfGuests - 1))
+            numberOfGuests--
+
         }
 
 
-        adapter = ArrayAdapter(this, R.layout.list_item_layout, R.id.guest_info_textView, names)
-        usersName.setAdapter(adapter)
          search.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -86,4 +83,5 @@ class DeleteActivity : AppCompatActivity() {
 
 
     }
+
 }
