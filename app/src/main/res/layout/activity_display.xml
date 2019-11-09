@@ -11,7 +11,7 @@
         android:id="@+id/gotodelete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorPrimaryDark"
         android:text = "Delete Users"
         android:textStyle="bold|italic"
@@ -22,18 +22,38 @@
         />
 
     <TextView
+        android:id="@+id/price_total_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:text="Price Total: "
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gotodelete_button"
+        app:layout_constraintBottom_toTopOf="@id/users_textView"
+        />
+
+    <TextView
         android:id="@+id/users_textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold|italic"
         android:textSize = "24sp"
-        app:layout_constraintTop_toBottomOf="@id/gotodelete_button"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/price_total_textview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

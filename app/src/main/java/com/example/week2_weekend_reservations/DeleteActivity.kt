@@ -60,12 +60,15 @@ class DeleteActivity : AppCompatActivity() {
             editor.remove(VALUE_KEY + (numberOfGuests - 1)).apply()
             names.removeAt(numberOfGuests - 1)
             adapter.remove(VALUE_KEY + (numberOfGuests - 1))
+            //adapter.remove(adapter.getItem(adapter.count-1))
             numberOfGuests--
 
         }
 
+        adapter.notifyDataSetChanged()
 
-         search.addTextChangedListener(object : TextWatcher {
+
+        search.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
 

@@ -1,17 +1,16 @@
 package com.example.week2_weekend_reservations
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import com.example.week2_weekend_reservations.MainActivity.Companion.editor
 import com.example.week2_weekend_reservations.MainActivity.Companion.numberOfGuests
 import com.example.week2_weekend_reservations.MainActivity.Companion.sharedPreferences
 import com.example.week2_weekend_reservations.MainActivity.Companion.guestspot
+import com.example.week2_weekend_reservations.MainActivity.Companion.total_price
 import kotlinx.android.synthetic.main.activity_display.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.text.StringBuilder
 
 class DisplayActivity : AppCompatActivity() {
@@ -40,6 +39,7 @@ class DisplayActivity : AppCompatActivity() {
 
         displayUsers()
 
+//        price_total_textview.setText("Total Price: $" + total_price.toString())
         gotodelete_button.setOnClickListener {_->
 
             val intent = Intent(this, DeleteActivity::class.java)

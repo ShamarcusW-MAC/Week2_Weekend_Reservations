@@ -13,11 +13,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
 
-    var nData: Int = 0
 
    companion object{
        lateinit var sharedPreferences: SharedPreferences
        lateinit var editor: SharedPreferences.Editor
+       var total_price = 0
        var numberOfGuests = 0
        var guestspot: String? = null
          var guest_key: String? = "guests_in"
@@ -67,10 +67,15 @@ class MainActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Done!", Toast.LENGTH_LONG).show()
             }
+
+//            if(price_edittext.text.length > 0) {
+//                total_price += Integer.parseInt(price_edittext.text.toString())
+//            }
         }
-        nData = sharedPreferences.getInt(guest_key, numberOfGuests)
+        sharedPreferences.getInt(guest_key, numberOfGuests)
         Log.d("create", "" + numberOfGuests)
         sharedPreferences.getString(VALUE_KEY + (numberOfGuests), guestspot)
+
         display_button.setOnClickListener {
 
             val intent2 = Intent(this, DisplayActivity::class.java)
@@ -82,6 +87,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        numberOfGuests = sharedPreferences.getInt(guest_key, 0)
         name_edittext.setText("")
         number_edittext.setText("")
         date_edittext.setText("")
@@ -98,9 +104,9 @@ class MainActivity : AppCompatActivity() {
         price_edittext.setText("")
         Log.d("stay", "" + numberOfGuests)
 
-        var ed: SharedPreferences.Editor = sharedPreferences.edit()
-        ed.putInt(guest_key, nData).commit()
-        ed.putString(VALUE_KEY + (numberOfGuests), guestspot)
+        editor.putInt(guest_key, numberOfGuests)
+        editor.commit()
+        editor.putString(VALUE_KEY + (numberOfGuests), guestspot)
 
     }
 }
